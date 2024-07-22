@@ -1,0 +1,498 @@
+body {
+    color: #bfc1c8;
+    font-family: "Roboto", "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    background-image: url("images/banner.png");
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh; /* Ensure the body takes the full viewport height */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+html {
+    font-size: 14px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.forecast-table {
+    width: 100%;
+    overflow: hidden; /* Prevent the forecast table from overflowing */
+}
+
+.forecast-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow forecasts to wrap to the next line if needed */
+    justify-content: space-between;
+    background: #323544;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.today.forecast {
+    flex: 1 1 100%; /* Full width for today’s forecast */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.forecast {
+    flex: 1 1 calc(33.333% - 10px); /* Responsive width for forecasts */
+    background: #262936;
+    border-radius: 10px;
+    margin: 5px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.forecast-header, .forecast-content {
+    padding: 10px;
+}
+
+.forecast-icon img {
+    max-width: 100%;
+    height: auto;
+}
+
+.degree, .location, .day, .date {
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+    .forecast {
+        flex: 1 1 calc(50% - 10px); /* Adjust width for smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .forecast {
+        flex: 1 1 100%; /* Full width for very small screens */
+    }
+}
+
+/* Additional styles for the rest of the page */
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+input[type="search"] {
+    box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+form input,
+form textarea,
+form select {
+    outline: none;
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+form select {
+    appearance: none;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+.button,
+form input[type="submit"],
+form button,
+form input[type="reset"] {
+    border: none;
+    background: #009ad8;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: white;
+}
+
+.container-header {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 15px;
+
+    height: 53px;
+}
+
+.container-fork {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 15px;
+
+}
+
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 53px;
+    background: hsla(81, 51%, 34%, 0.62);
+
+
+}
+
+.media-container {
+    display: flex;
+    flex-direction: row; /* Horizontal layout */
+    padding: 12px; /* Padding inside container */
+    float: right;
+}
+
+.media-item {
+    margin-right: 10px;
+    border-radius: 100%;
+    background-color: #1e202b; /* Black background */
+    width: 30px; /* Object width */
+    height: 30px; /* Object height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-header:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.container-fork:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.container-footer:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+@media (min-width: 768px) {
+    .container-header {
+        width: 750px;
+    }
+
+    .container-fork {
+        width: 750px;
+    }
+
+    .container-footer {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-header {
+        width: 970px;
+    }
+
+    .container-fork {
+        width: 970px;
+    }
+
+    .container-footer {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-header {
+        width: 1170px;
+    }
+
+    .container-fork {
+        width: 1170px;
+    }
+
+    .container-footer {
+        width: 1170px;
+    }
+}
+
+.row {
+    margin: 0 -15px;
+}
+
+.row:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+
+.site-header {
+    background: hsla(220, 89%, 45%, 0.73);
+    height: 53px;
+    display: flex; /* Flexbox for horizontal layout */
+    align-items: center; /* Vertically center elements */
+    justify-content: space-between; /* Space between elements */
+    padding: 0 10px; /* Side padding */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.site-header .branding {
+    display: flex;
+    align-items: center; /* Vertically center inside branding */
+}
+
+.site-header .branding .logo {
+    margin-right: 10px; /* Space between logo and title */
+    margin-top: 7px;
+}
+
+.site-header .branding .site-title {
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    margin-top: -5px;
+
+}
+
+.main-navigation {
+    display: flex; /* Flexbox for horizontal layout */
+    align-items: center;
+    margin: 20px 0; /* Margin between navigation and content */
+    width: 100%;
+    justify-content: center; /* Center navigation items */
+    position: absolute;
+}
+
+.main-navigation .menu {
+    list-style: none; /* Remove list markers */
+    margin: -20px;
+    padding: 0;
+    display: flex; /* Horizontal line for menu items */
+    background-color: #1e202b;
+}
+
+#sound-toggle {
+    position: fixed; /* Фиксированное положение */
+    top: 10px; /* Отступ сверху */
+    right: 400px; /* Отступ справа */
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#sound-toggle:hover {
+    background-color: #0056b3;
+}
+
+.icons-res {
+    display: flex; /* Horizontal line for menu items */
+    gap: 15px; /* Добавление промежутков между элементами */
+}
+
+.main-navigation .menu a {
+    color: white; /* Link text color */
+    text-decoration: none; /* Remove link underline */
+}
+
+@media screen and (max-width: 990px) {
+    .main-navigation .menu {
+        display: none;
+    }
+}
+
+.main-navigation .menu .menu-item {
+    float: left;
+    margin-left: 10px;
+}
+
+.main-navigation .menu .menu-item a {
+    padding: 5px 25px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    color: white;
+    transition: .3s ease;
+    font-weight: 400;
+}
+
+.main-navigation .menu .menu-item.current-menu-item a,
+.main-navigation .menu .menu-item:hover a {
+    border-color: #323543;
+
+    color: #323543;
+}
+
+.hero {
+    background-size: cover;
+    padding: 70px 0;
+}
+
+.find-location {
+    position: relative;
+    width: 80%; /* Ширина контейнера */
+    max-width: 1400px; /* Максимальная ширина контейнера */
+    margin: 50px auto; /* Центрирование с отступами по вертикали */
+}
+
+.find-location input[type="text"] {
+    width: 100%; /* Ширина текстового поля */
+    padding: 20px;
+    background: #1e202b;
+    color: white;
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.find-location input[type="submit"] {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    padding: 10px 20px; /* Уменьшенные отступы */
+    background: #102cc6;
+    color: white;
+    border: none; /* Убираем рамку */
+    cursor: pointer; /* Курсор при наведении */
+    box-sizing: border-box; /* Учитываем padding в размере */
+}
+
+.fullwidth-block {
+    padding: 70px 0;
+}
+
+.fullwidth-block .section-title {
+    font-size: 36px;
+    font-weight: 300;
+    color: white;
+}
+
+.filter {
+    margin-bottom: 30px;
+}
+
+.filter-control {
+    border: 2px solid #262936;
+    padding: 5px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.filter-control label {
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.select.control {
+    background: #262936;
+    border-radius: 40px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 30px;
+    position: relative;
+}
+
+.select.control:after {
+    content: " ";
+    width: 7px;
+    height: 9px;
+    background: url(images/arrow-down.png);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -5px;
+}
+
+#weather .icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+
+#weather .forecast-content .icon {
+    width: 48px;
+    height: 48px;
+}
+
+#weather .forecast-content {
+    padding: 20px 30px;
+    text-align: center;
+}
+
+#weather .forecast-content .degree {
+    font-size: 36px;
+    font-weight: 300;
+    color: white;
+}
+
+#weather .forecast-content small {
+    color: #717784;
+    display: block;
+    font-weight: 300;
+    margin-top: -10px;
+}
+
+#weather .forecast-header {
+    padding: 30px;
+    background: #262936;
+    text-align: center;
+}
+
+#weather .forecast-header .day {
+    font-size: 24px;
+    color: white;
+    font-weight: 300;
+}
+
+#weather .forecast-header .date {
+    font-size: 16px;
+    color: #717784;
+    font-weight: 300;
+}

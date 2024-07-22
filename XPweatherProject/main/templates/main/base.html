@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Loading main css file -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static "fontawesomefree/css/all.min.css" %}">
+    <!-- Loading main css file -->
+
+</head>
+
+<body>
+
+<div class="site-content">
+    <div class="site-header">
+        <div class="container-header">
+            <a href="{% url 'home' %}" class="branding">
+                <img src="{% static 'css/images/logo.png' %}" alt="" class="logo">
+                <div class="logo-type">
+                    <h1 class="site-title">XP.WEATHER</h1>
+
+                </div>
+            </a>
+
+            <div class="main-navigation">
+                <audio  id="background-music" loop>
+                    <source src="{% static 'css/music/BG.mp3' %}" type="audio/mpeg">
+                </audio>
+                <button  id="sound-toggle">Sound Off</button>
+            </div>
+
+            <script>
+                const audio = document.getElementById('background-music');
+                const toggleButton = document.getElementById('sound-toggle');
+
+                // Play audio on window load
+                window.onload = function () {
+                    audio.play().catch(error => {
+                        console.log("Audio play was prevented:", error);
+                    });
+                };
+
+                // Toggle play/pause on button click
+                toggleButton.addEventListener('click', function () {
+                    if (audio.paused) {
+                        audio.play();
+                        toggleButton.textContent = 'Sound Off';
+                    } else {
+                        audio.pause();
+                        toggleButton.textContent = 'Sound On';
+                    }
+                });
+            </script>
+        </div>
+    </div> <!-- .site-header -->
+
+    <div class="Body" data-bg-image="{% static 'css/images/banner.png' %}">
+        <div class="container-body">
+            <form action="{% url 'result' %}" class="find-location" method="post">
+                {% csrf_token %}
+
+                <input type="text" id="city" name="city" placeholder="Enter your city name..." required>
+
+                <input type="submit" value="Find">
+            </form>
+
+        </div>
+    </div>
+    {% block content %}
+    {% endblock content %}
+
+    <div class="site-footer">
+
+
+        <div class="media-container">
+            <a class="media-item" href="https://github.com/Efficiency300?tab=repositories"><i
+                    class="fa-brands fa-github" style="color: beige;"></i></a>
+            <a class="media-item" href="https://www.linkedin.com/in/maksud-jumaniyozov-34a831318/"><i
+                    class="fa-brands fa-linkedin-in" style="color: #ffffff;"></i></a>
+            <a class="media-item" href="https://t.me/diabl0l666"><i class="fa-brands fa-telegram"
+                                                                    style="color: #ffffff;"></i></a>
+            <a class="media-item" href="https://www.youtube.com/"><i class="fa-brands fa-youtube"
+                                                                     style="color: #ffffff;"></i></a>
+            <a class="media-item" href="https://x.com/?lang=ru"><i class="fa-solid fa-x"
+                                                                   style="color: #ffffff;"></i></a>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
